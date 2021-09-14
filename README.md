@@ -17,8 +17,7 @@ It help libraries keep track of the books and their checkouts, as well as member
 **Sign in**
 ![in](https://user-images.githubusercontent.com/82595922/133312537-f812bccc-f465-4ca5-8cf6-0d6a09034063.png)
 **Sign up**
-![up](https://user-images.githubusercontent.com/82595922/133313097-78b5f06d-0a46-4d7e-9ed6-5170fc414fa3.png)
-![xt](https://user-images.githubusercontent.com/82595922/133313112-9b110171-a864-41f9-846a-f9e3bc96a93a.png)
+![up](https://user-images.githubusercontent.com/82595922/133313097-78b5f06d-0a46-4d7e-9ed6-5170fc414fa3.png)![xt](https://user-images.githubusercontent.com/82595922/133313112-9b110171-a864-41f9-846a-f9e3bc96a93a.png)
 **Admin**
 ![ad](https://user-images.githubusercontent.com/82595922/133312835-4fd0297b-bf91-4ea0-80db-064cc871e328.png)
 **Student**
