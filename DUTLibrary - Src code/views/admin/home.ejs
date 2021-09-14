@@ -1,0 +1,190 @@
+<%-include('partials/header.html')%>
+    <style>
+	    #card .card {
+		    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+		    cursor: pointer;
+	    }
+        #card .card:hover{
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }	
+        #clock #time .card {
+            letter-spacing: 3px;
+        }
+        #clock #time .card-body {
+            font-size: 2.1vw;
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home" class="active">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+                   
+        <div class="content">
+
+            <div class="card-group p-3 h-25 text-light" id="card">
+                
+                <div class="card mr-3 rounded" style="background-color:#007a83;">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h2 class="mt-2" style="letter-spacing: 2px; font-weight: 550;" ><%=st%></h2>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-user-alt fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">Tổng sinh viên</div>
+                </div>
+
+                <div class="card mr-3 rounded" style="background-color:#165f97">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h2 class="mt-2" style="letter-spacing: 2px; font-weight: 550;" ><%=bk%></h2>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-book fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">Tổng ấn phẩm</div>
+                </div>
+
+                <div class="card mr-3 rounded" style="background-color:#008181">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h2 class="mt-2" style="letter-spacing: 2px; font-weight: 550;" ><%=iss%></h2>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-bookmark fa-2x"></i>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">Ấn phẩm đang được mượn</div>
+                </div>
+
+                <div class="card mr-3 rounded" style="background-color:#4A47A3">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h2 class="mt-2" style="letter-spacing: 2px; font-weight: 550;" ><%=turn%></h2>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-sync-alt fa-2x"></i>                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">Số lượt mượn ấn phẩm</div>
+                </div>
+
+                <div class="card rounded" style="background-color:#3a5779">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h2 class="mt-2" style="letter-spacing: 2px; font-weight: 550;" ><%=req%></h2>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-arrow-down fa-2x"></i>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">Số lượt đề nghị ấn phẩm</div>
+                </div>
+
+            </div>  
+
+            <div class="card-group p-3 h-75">
+
+                <div class="col-sm-8 card rounded mr-3 p-0">
+                    <iframe width="100%"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.8397919177073!2d108.14772551480782!3d16.073801288878112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218d68dff9545%3A0x714561e9f3a7292c!2sDa%20Nang%20University%20of%20Technology!5e0!3m2!1sen!2s!4v1625980062493!5m2!1sen!2s" 
+                    height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="col-sm-4 card border-0 h-100 p-0">
+                    <div class="card-header rounded-top border" style="letter-spacing: 1px;">THỦ THƯ</div>
+                    <div class="card-body border-left border-right border-bottom rounded-bottom" style="overflow: auto;">
+                        <% for(var i=0; i< res.length; i++){ %> 
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <a> <img src="/public/image/admin.svg" class="mr-3"><%=res[i].name%></a>
+                                </div>
+                                <div class="align-self-center"><%=res[i].code%></div>
+                            </div>
+                            <hr>
+                        <% } %>
+                    </div>
+                    <div class="card-footer bg-transparent border-0" style="padding: 1.8vh 0 0 0;">
+
+                        <div id="clock"><div id="time">
+                            <div class="card-group text-center font-weight-bold">
+                                <div class="card mr-3 border-0" >
+                                    <div class="card-body rounded-top bg-info text-light" id="hours">00</div>
+                                    <div class="card-footer border rounded-bottom text-info" >GIỜ</div>
+                                </div>
+                            <div class="card mr-3 border-0" >
+                                <div class="card-body rounded-top bg-info text-light" id="minutes">00</div>
+                                <div class="card-footer border rounded-bottom text-info" >PHÚT</div>
+                            </div>
+                            <div class="card border-0" >
+                                <div class="card-body rounded-top bg-danger text-light" id="seconds">00</div>
+                                <div class="card-footer border rounded-bottom text-danger" >GIÂY</div>
+                            </div>
+                        </div></div>  
+
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+    <script>
+        function clock() {
+            var hours = document.getElementById("hours");
+            var minutes = document.getElementById("minutes");
+            var seconds = document.getElementById("seconds");
+
+            var h = new Date().getHours();
+            var m = new Date().getMinutes();
+            var s = new Date().getSeconds();
+
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+        }
+        var interval = setInterval(clock, 1000);
+    </script>
+</body>
+</html>

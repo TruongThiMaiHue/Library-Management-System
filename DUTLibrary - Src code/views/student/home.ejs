@@ -1,0 +1,220 @@
+<%-include('partials/header.html')%>
+    <style>
+	    #card .card {
+		    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+		    cursor: pointer;
+	    }
+        #card .card:hover{
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }	
+        #clock #time .card {
+            letter-spacing: 3px;
+        }
+        #clock #time .card-body {
+            font-size: 2.1vw;
+        }
+        .header {
+            color: #fff;
+            font-weight: bold;
+            background: rgba(0,0,0,0.15);
+            padding: 0.125rem 0.5rem;
+            border-radius: 100px;
+            font-size: 1.2vw;
+            letter-spacing: 0.8px;
+        }
+        .head {
+            color: #325C46;
+        }
+        .body {
+            color: #266b47 ;
+        }  
+        button i {
+            color: #325C46;
+        }
+        button i:hover {
+            opacity: 0.7
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/student/home" class="active">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>CÁ NHÂN</h6>
+        <a href="/student/profile/edit">
+            <img src = "/public/image/editS.svg">Sửa thông tin cá nhân</a>
+        <a href="/student/profile/changepass">
+            <img src = "/public/image/passch.svg">Đổi mật khẩu</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/student/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/student/books/borrow">
+            <img src = "/public/image/issueS.svg">Ấn phẩm đang mượn</a>
+        <a href="/student/books/history">
+            <img src = "/public/image/history.svg">Lịch sử mượn ấn phẩm</a>
+        <a href="/student/books/request">
+            <img src = "/public/image/requestB.svg">Đề nghị ấn phẩm</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+                   
+        <div class="content">
+
+            <div class="card-group p-3 h-25 text-light" id="card">
+                
+                <div class="card mr-3 rounded" style="background-color:#007a83;">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h2 class="mt-2" style="letter-spacing: 2px; font-weight: 550;" ><%=issue%></h2>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-user-alt fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">Số ấn phẩm đang mượn</div>
+                </div>
+
+                <div class="card mr-3 rounded" style="background-color:#165f97">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h2 class="mt-2" style="letter-spacing: 2px; font-weight: 550;" ><%=total%></h2>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-book fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">Số lượt mượn ấn phẩm</div>
+                </div>
+
+                <div class="card rounded" style="background-color:#4A47A3">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <h2 class="mt-2" style="letter-spacing: 2px; font-weight: 550;" ><%=req%></h2>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-bookmark fa-2x"></i>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">Số lượt đề nghị ấn phẩm</div>
+                </div>
+
+            </div>  
+
+            <div class="card-group p-3 h-75">
+
+                <div class="col-sm-7 card rounded mr-3 p-0">
+                    <div class="card-group p-0 h-100">
+
+                        <div class="card p-4 col-sm-5 text-center" style="background-color: #93BDA7;">
+                            <div class="card-header bg-transparent border-0">
+                                <div class="header">SINH VIÊN</div>
+                            </div>
+                            <div class="card-body px-0 pt-5"> 
+                                <img src="/public/image/avatarS.png" style="width:11.5rem;">
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="header"><%=res.code%></div>
+                            </div>
+                        </div>
+    
+                        <div class="card p-4 col-sm-7" style="background-color: #93BDA7;">
+                            <div class="card-header bg-transparent border-0 text-center">
+                                <h3 class="head font-weight-bold"><%=res.name%></h3>
+                            </div>
+                            <div class="card-body body px-1">
+                                <div class="row pb-3 pt-4">
+                                        <div class="col-sm-3" style="font-size: 1.2vw">Lớp</div>
+                                        <div class="col-sm-9 text-right" style="font-size: 1.2vw"><%=res.class%></div>
+                                    </div>    
+                                    <div class="row py-3">
+                                        <div class="col-sm-3" style="font-size: 1.2vw">Khoa</div>
+                                        <div class="col-sm-9 text-right" style="font-size: 1.2vw"><%=res.faculty%></div>
+                                    </div> 
+                                    <div class="row py-3">
+                                        <div class="col-sm-3" style="font-size: 1.2vw">Email</div>
+                                        <div class="col-sm-9 text-right" style="font-size: 1.2vw"> <%=res.email%></div>
+                                    </div>                               
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="row p-0">
+                                    <button class="col-sm-6 bg-transparent border-0"> 
+                                        <a href="/student/profile/edit">  
+                                            <i class="fas fa-user-edit fa-3x"></i>
+                                        </a>
+                                    </button>
+                                    <button class="col-sm-6 bg-transparent border-0"> 
+                                        <a href="/student/profile/changepass">
+                                            <i class="fas fa-key fa-3x"></i>
+                                        </a>                   
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+
+                <div class="col-sm-5 card border-0 h-100 p-0">
+                    <div class="card-body border rounded p-0">
+                        <iframe width="100%"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.8397919177073!2d108.14772551480782!3d16.073801288878112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218d68dff9545%3A0x714561e9f3a7292c!2sDa%20Nang%20University%20of%20Technology!5e0!3m2!1sen!2s!4v1625980062493!5m2!1sen!2s" 
+                        height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="card-footer bg-transparent border-0" style="padding: 1.8vh 0 0 0;">
+                        <div id="clock"><div id="time">
+                            <div class="card-group text-center font-weight-bold">
+                                <div class="card mr-3 border-0" >
+                                    <div class="card-body rounded-top bg-info text-light" id="hours">00</div>
+                                    <div class="card-footer border rounded-bottom text-info" >GIỜ</div>
+                                </div>
+                            <div class="card mr-3 border-0" >
+                                <div class="card-body rounded-top bg-info text-light" id="minutes">00</div>
+                                <div class="card-footer border rounded-bottom text-info" >PHÚT</div>
+                            </div>
+                            <div class="card border-0" >
+                                <div class="card-body rounded-top bg-danger text-light" id="seconds">00</div>
+                                <div class="card-footer border rounded-bottom text-danger" >GIÂY</div>
+                            </div>
+                        </div></div>  
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+    <script>
+        function clock() {
+            var hours = document.getElementById("hours");
+            var minutes = document.getElementById("minutes");
+            var seconds = document.getElementById("seconds");
+
+            var h = new Date().getHours();
+            var m = new Date().getMinutes();
+            var s = new Date().getSeconds();
+
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+        }
+        var interval = setInterval(clock, 1000);
+    </script>
+</body>
+</html>

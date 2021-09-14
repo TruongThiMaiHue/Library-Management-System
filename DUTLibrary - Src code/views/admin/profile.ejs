@@ -1,0 +1,114 @@
+<%-include('partials/header.html')%>
+    <style>
+        .card {
+            background-color: #93BDA7;
+            transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+		    cursor: pointer;
+        }
+        .card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }	
+        .header {
+            color: #fff;
+            font-weight: bold;
+            background: rgba(0,0,0,0.15);
+            padding: 0.125rem 0.5rem;
+            border-radius: 100px;
+            font-size: 1.1vw;
+            letter-spacing: 0.8px;
+        }
+        .head {
+            color: #325C46;
+        }
+        .body {
+            color: #266b47 ;
+        }  
+        button i {
+            color: #325C46;
+        }
+        button i:hover {
+            opacity: 0.7
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+
+                <div class="content">
+                    <div class = "row h-100">                     
+
+                        <div class="card-group p-5 col-sm-7" style="float:none;margin:auto;">
+
+                            <div class="card p-4 col-sm-5 text-center">
+                                <div class="card-header bg-transparent border-0">
+                                    <div class="header">QUẢN LÝ - ID <%=res.user_id%></div>
+                                </div>
+                                <div class="card-body px-0"> 
+                                    <img src="/public/image/avatar.png" style="width:9rem;">
+                                </div>
+                                <div class="card-footer bg-transparent border-0">
+                                    <div class="header"><%=res.code%></div>
+                                </div>
+                            </div>
+
+                            <div class="card p-4 col-sm-7">
+                                <div class="card-header bg-transparent border-0 text-center">
+                                    <h3 class="head font-weight-bold"><%=res.name%></h3>
+                                </div>
+                                <div class="card-body body px-1">
+                                        <div class="row">
+                                            <div class="col-sm-4">Email</div>
+                                            <div class="col-sm-8 text-right"> <%=res.email%></div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-sm-4">Mật khẩu</i></div>
+                                            <div class="col-sm-8 text-right"><%=res.password%></div>
+                                        </div>      
+                                </div>
+                                <div class="card-footer bg-transparent border-0">
+                                    <div class="row p-0">
+                                        <button class="col-sm-6 bg-transparent border-0"> 
+                                            <a href="/admin/profile/edit">  
+                                                <i class="fas fa-user-edit fa-3x"></i>
+                                            </a>
+                                        </button>
+                                        <button class="col-sm-6 bg-transparent border-0"> 
+                                            <a href="/admin/profile/changepass">
+                                                <i class="fas fa-key fa-3x"></i>
+                                            </a>                   
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                </div>
+    
+    </div>
+    </div>
+    </div>
+</body>
+</html>

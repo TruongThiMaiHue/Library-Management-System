@@ -1,0 +1,137 @@
+<%-include('partials/header.html')%>    
+    <style>
+        #hr {
+            height: 1px;
+            background-color: #3780b8;
+        }
+        #val {
+            padding: 0;
+            margin: 0;
+            font-size: 1vw;
+        }
+        .content {
+            background-color: #f5f7fa;
+        }
+        input[type=file]::file-selector-button {
+            margin: -0.5vw 1vw 0 -0.8vw;
+            border: none;
+            padding: 0.5vw 0.6vw;
+        }
+        #title {
+            color: #3780b8;
+        }
+        #btnDel{
+            background-color: #3780b8;
+        }
+        #btnDel:hover {
+            background-color: #1b6faf;
+        }
+        .form-control {
+            border-color: #3780b8;
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+
+        <div class="content">
+            <div class = "row h-100 p-3">                     
+                <div class="col-sm-11" style="float:none;margin:auto;">    
+                    <div class="card shadow">             
+                        <div class="card-body p-4">
+
+                            <form method="post" enctype="multipart/form-data" class="p-2">
+                                <div>   
+                                    <p class="text-center font-weight-bold" id="title">THÔNG TIN ẤN PHẨM - ID <%=id%></p>
+                                        <hr id="hr">
+                                </div>
+
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-3 pr-3">
+                                        <img src="/<%=res.image%>" class="rounded w-100" style="height: 20.4rem;" alt="">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-9">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Tên bìa</label>
+                                                <input type="text" class="form-control bg-transparent" name="title" value="<%=res.title%>" readonly>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Tác giả</label>
+                                                <input type="text" class="form-control bg-transparent" name="author" value="<%=res.author%>" readonly>
+                                            </div> 
+                                        </div> 
+                                        <div class="form-row">  
+                                            <div class="form-group col-md-6">
+                                                <label>Thể loại</label>
+                                                <input type="text" class="form-control bg-transparent" name="genre" value="<%=res.genre%>" readonly>
+                                            </div> 
+                                            <div class="form-group col-md-6">
+                                                <label>Nhà xuất bản</label>
+                                                <input type="text" class="form-control bg-transparent" name="publisher" value="<%=res.publisher%>" readonly>
+                                            </div> 
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-12">
+                                                        <label>Mã ISBN</label>
+                                                        <input type="number" class="form-control bg-transparent" name="isbn" value="<%=res.isbn%>" readonly>
+                                                    </div> 
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Tập</label>
+                                                        <input type="number" class="form-control bg-transparent" name="edition" value="<%=res.edition%>" readonly>
+                                                    </div>
+                                                    <div class="form-group col-md-6">                                                
+                                                        <label>Số trang</label>
+                                                        <input type="number" class="form-control bg-transparent" name="pages" value="<%=res.pages%>" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>                                           
+                                            <div class="form-group col-md-8">
+                                                <label>Mô tả</label>
+                                                <textarea class="form-control bg-transparent" style="height:7.7em" name="description" readonly><%=res.description%></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="submit" class="btn font-weight-bold text-light btn-block" id="btnDel"
+                                    style="margin-top: -20px;">XÓA ẤN PHẨM</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+    </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "library_management",
+  "version": "1.0.0",
+  "description": "web management library with nodejs, mysql",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "author": "truongthimaihue_17pfiev2_dut",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "async-validator-2": "^1.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.2",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.6.3",
+    "random-token": "^0.0.8"
+  }
+}

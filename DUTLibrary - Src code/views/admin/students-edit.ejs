@@ -1,0 +1,185 @@
+<%-include('partials/header.html')%>
+    <style>
+        #hr{
+            height: 1px;
+            background-color: #04b3b3;
+        }
+        #val{
+            padding: 0;
+            margin: 0;
+            font-size: 1vw;
+        }
+        .content {
+            background-color: #f5f7fa;
+        }
+        #title {
+            color: #04b3b3;
+        }
+        #btnEdit{
+            background-color: #04b3b3;
+        }
+        #btnEdit:hover {
+            background-color: #04a1a1;
+        }
+        .form-control, .custom-select {
+            border-color: #04b3b3;
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+
+        <div class="content">
+            <div class = "row h-100 p-4">                     
+                <div class="col-sm-9" style="float:none;margin:auto;">    
+                    <div class="card h-100 shadow">             
+                        <div class="card-body p-4">
+
+                            <% for(var i=0; i< success.length; i++){ %>
+                                <div style="margin-left: 1.3vw;">
+                                    <div class="alert alert-success m-2" role="alert">
+                                        <i class="fas fa-check fa-lg rounded bg-success text-light"
+                                            style="padding: 0.7vw 0.55vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                        </i>
+                                        <%= success[i].message %> Tiếp tục chỉnh sửa hoặc xem 
+                                        <a href="/admin/students/profile/<%=id%>" class="alert-link">chi tiết thông tin sinh viên</a>.
+                                    </div>
+                                </div>
+                            <%}%>
+                            <% for(var i=0; i< error.length; i++){ %>
+                                <div style="margin-left: 1.3vw;">
+                                    <div class="alert alert-warning m-2" role="alert">
+                                        <i class="fas fa-exclamation fa-lg rounded bg-warning text-light"
+                                            style="padding: 0.7vw 1vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                        </i>
+                                        <%= error[i].message %> 
+                                    </div>
+                                </div>
+                            <%}%>
+
+                            <form method="post" class="p-2">
+                                <div>   
+                                    <p class="text-center font-weight-bold" id="title">THÔNG TIN SINH VIÊN - ID <%=id%></p>
+                                    <hr id="hr">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label>Mã số sinh viên</label>
+                                        <input type="number" class="form-control" name="code" value="<%=res.code%>">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="code"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label>Họ tên</label>
+                                        <input type="text" class="form-control" name="name" value="<%=res.name%>">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="name"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label>Lớp</label>
+                                        <input type="text" class="form-control" name="class" value="<%=res.class%>">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="class"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label>Khoa</label> 
+                                        <select class="custom-select" name="faculty">
+                                            <option selected><%=res.faculty%></option>
+                                            <option>Công nghệ Nhiệt - Điện lạnh</option>
+                                            <option>Công nghệ Thông tin</option>
+                                            <option>Cơ khí</option>
+                                            <option>Cơ khí Giao thông</option>
+                                            <option>Điện</option>
+                                            <option>Điện tử - Viễn thông</option>
+                                            <option>Hóa</option>
+                                            <option>Khoa học Công nghệ tiên tiến</option>
+                                            <option>Kiến trúc</option>
+                                            <option>Môi trường</option>
+                                            <option>Quản lý Dự án</option>
+                                            <option>Xây dựng Cầu - Đường</option>
+                                            <option>Xây dựng Công trình Thủy</option>
+                                            <option>Xây dựng Dân dựng & Công nghiệp</option>                       
+                                        </select>
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="faculty"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p class="text-center font-weight-bold" id="title">TÀI KHOẢN</p>
+                                        <hr id="hr">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Email cấp</label>
+                                        <input type="text" class="form-control" name="email" value="<%=res.email%>">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="email"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Mật khẩu cấp</label>
+                                        <input type="text" class="form-control" name="password" value="<%=res.password%>">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="password"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn font-weight-bold text-light btn-block mt-2" id="btnEdit">SỬA TÀI KHOẢN</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+    </div>
+    </div>
+    </div>
+</body>
+</html>

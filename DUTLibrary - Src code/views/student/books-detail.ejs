@@ -1,0 +1,120 @@
+<%-include('partials/header.html')%>    
+    <style>
+        #hr {
+            height: 1px;
+        }   
+        td {
+            padding: 7.5px 15px;
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/student/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>CÁ NHÂN</h6>
+        <a href="/student/profile/edit">
+            <img src = "/public/image/editS.svg">Sửa thông tin cá nhân</a>
+        <a href="/student/profile/changepass">
+            <img src = "/public/image/passch.svg">Đổi mật khẩu</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/student/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/student/books/borrow">
+            <img src = "/public/image/issueS.svg">Ấn phẩm đang mượn</a>
+        <a href="/student/books/history">
+            <img src = "/public/image/history.svg">Lịch sử mượn ấn phẩm</a>
+        <a href="/student/books/request">
+            <img src = "/public/image/requestB.svg">Đề nghị ấn phẩm</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+     
+        <div class="content">
+
+            <div class="card-group p-4 h-100">
+
+                <div class="card col-sm-4 rounded px-4 pt-4 border-info text-center">
+                    <img src="/<%=res.image%>" class="rounded mb-4 w-100 h-100"  alt="">
+                </div>
+
+                <div class="card col-sm-8 py-0 pr-0 pl-4 border-0">
+                    <p class="mb-2 font-weight-bold text-info">THÔNG TIN CHI TIẾT</p>
+                    <div class= "card p-4 mb-4 bg-white border-info">
+                        <table class="table-bordered w-100 table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Tên bìa
+                                    </td>
+                                    <td>
+                                        <%=res.title%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Tác giả
+                                    </td>
+                                    <td>
+                                        <%=res.author%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Thể loại
+                                    </td>
+                                    <td>
+                                        <%=res.genre%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Nhà xuất bản
+                                    </td>
+                                    <td>
+                                        <%=res.publisher%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mã ISBN
+                                    </td>
+                                    <td>
+                                        <%=res.isbn%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Tập
+                                    </td>
+                                    <td>
+                                        <%=res.edition%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Số trang
+                                    </td>
+                                    <td>
+                                        <%=res.pages%>                                    
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mb-2 font-weight-bold text-info">MÔ TẢ</p>
+                    <div class="card p-4 border-info">
+                        <textarea class="form-control bg-white p-0 border-0 w-100" style="height:8em" name="description" readonly ><%=res.description%></textarea>  
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    </div>                        
+    </div>
+</body>
+</html>

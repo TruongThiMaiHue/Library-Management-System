@@ -1,0 +1,158 @@
+<%-include('partials/header.html')%>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+
+        <div class="content">
+            <div class = "row h-100">                     
+                <div class="col-sm-12" style="float:none;margin:auto;">    
+                    <div class="card border-0 px-4 py-0" >             
+                        <div class="card-body px-3 py-0">
+                            <table
+                                id="table"
+                                data-height="558"
+                                data-show-columns="true" 
+                                data-show-columns-toggle-all="true"
+                                data-detail-formatter="detailFormatter"
+                                data-minimum-count-columns="3"
+                                data-show-export="true"
+                                data-show-print="true"
+                                data-search="true"
+                                data-server-sort="false"
+                                data-query-params="queryParams"
+                                data-response-handler="responseHandler">
+
+                                <thead class="bg-info text-light">
+                                    <tr>
+                                        <th data-field="id" data-sortable="true" data-align="center">ID</th>
+                                        <th data-sortable="true" data-align="center">MSSV</th>
+                                        <th data-sortable="true" data-align="center">Tên</th>
+                                        <th data-sortable="true" data-align="center">Lớp</th>
+                                        <th data-sortable="true" data-align="center">Khoa</th>
+                                        <th data-sortable="true" data-align="center">Email</th>
+                                        <th data-align="center">Thao tác</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody> <% for(var i=0; i< res.length; i++){ %>
+                                    <tr> 
+                                        <td>
+                                            <%=res[i].user_id%>
+                                        </td>
+                                        <td>
+                                            <a class="text-info" 
+                                            href="/admin/students/profile/<%=res[i].user_id%>">
+                                                <%=res[i].code%>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <%=res[i].name%>
+                                        </td>         
+                                        <td>
+                                            <%=res[i].class%>
+                                        </td>
+                                        <td>
+                                            <%=res[i].faculty%>
+                                        </td>
+                                        <td>
+                                            <%=res[i].email%>
+                                        </td>
+                                        
+                                        <td>
+                                            <form method="post">
+                                                <input type="text" name="user_id" value="<%=res[i].user_id%>" hidden>
+                                                <button type="submit" class="btn btn-warning font-weight-bold text-light">
+                                                    <i class="fas fa-bookmark fa-sm text-light mr-2"></i> 
+                                                    CHO MƯỢN</button>                                               
+                                            </form>
+                                        </td>
+                                    </tr>
+                                        <% } %>
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 px-3 py-0">
+                            <% for(var i=0; i< success.length; i++){ %>
+                                <div class="col-sm-6" style="float:none;margin:auto;">
+                                    <div class="alert alert-success m-2" role="alert">
+                                        <i class="fas fa-check fa-lg rounded bg-success text-light"
+                                            style="padding: 0.7vw 0.55vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                        </i>
+                                        <%= success[i].message %> Quay về 
+                                        <a href="/admin/books" class="alert-link">danh sách ấn phẩm</a>.
+                                    </div>
+                                </div>
+                            <%}%>
+                            
+                            <% for(var i=0; i< error.length; i++){ %>
+                                <div class="col-sm-9" style="float:none;margin:auto;">
+                                    <div class="alert alert-warning m-2" role="alert">
+                                        <i class="fas fa-exclamation fa-lg rounded bg-warning text-light"
+                                            style="padding: 0.7vw 1vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                        </i>
+                                        <%= error[i].message %> Tới
+                                        <a href="/admin/books/issued" class="alert-link">danh sách ấn phẩm được mượn</a>.
+                                    </div>
+                                </div>
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+            </div>		
+        </div>
+	        
+    </div>
+	</div>			
+    </div>
+
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/print/bootstrap-table-print.min.js"></script>
+
+    <script>
+        var $table = $('#table')
+        $(function() {
+            $table.bootstrapTable('destroy').bootstrapTable({
+              	exportDataType: $(this).val(),
+              	exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],   
+            })
+        })
+        function queryParams(params) {
+			delete params.sort
+			delete params.order
+			return params
+		}
+		function responseHandler(res) {
+			if ($('#table').bootstrapTable('getOptions').sortOrder === 'desc') {
+			res.rows = res.rows.reverse()
+			}
+			return res
+		}
+    </script>
+</body>
+</html>

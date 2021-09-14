@@ -1,0 +1,122 @@
+<%-include('partials/header.html')%>    
+    <style>
+        #val{
+            padding: 0;
+            margin: 0;
+            font-size: 1vw;
+        }
+        input[type=file]::file-selector-button {
+            margin: -0.5vw 1vw 0 -0.8vw;
+            border: none;
+            padding: 0.5vw 0.6vw;
+        }    
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/student/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>CÁ NHÂN</h6>
+        <a href="/student/profile/edit">
+            <img src = "/public/image/editS.svg">Sửa thông tin cá nhân</a>
+        <a href="/student/profile/changepass">
+            <img src = "/public/image/passch.svg">Đổi mật khẩu</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/student/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/student/books/borrow">
+            <img src = "/public/image/issueS.svg">Ấn phẩm đang mượn</a>
+        <a href="/student/books/history">
+            <img src = "/public/image/history.svg">Lịch sử mượn ấn phẩm</a>
+        <a href="/student/books/request" class="active">
+            <img src = "/public/image/requestB.svg">Đề nghị ấn phẩm</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+        <div class="content">
+            <div class = "row h-100 p-4">                     
+				<div class="col-sm-6" style="float:none;margin:auto;">    
+					<div class="card h-100">             
+                        <div class="card-body p-4">
+
+                           <% for(var i=0; i< success.length; i++){ %>
+                                <div style="margin-left: 1.3vw;">
+                                    <div class="alert alert-success m-2" role="alert">
+                                        <i class="fas fa-check fa-lg rounded bg-success text-light"
+                                            style="padding: 0.7vw 0.55vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                        </i>
+                                        <%= success[i].message %>
+                                    </div>
+                                </div>
+                            <%}%>
+                            <p class="text-center font-weight-bold text-warning">THÔNG TIN ẤN PHẨM ĐỀ NGHỊ</p>
+
+                            <form method="post" enctype="multipart/form-data" class="p-2">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Tên bìa</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="title" value="<%=res.title%>">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="title"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Tác giả</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="author" value="<%=res.author%>">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="author"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+                                 
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Nhà xuất bản</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="publisher" value="<%=res.publisher%>">
+                                        <% for(var i=0; i< errs.length; i++){ %>
+                                            <% if(errs[i].field=="publisher"){%>
+                                                <hr class="mx-1 my-0 bg-danger">
+                                                <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Tập</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="edition" value="<%=res.edition%>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-sm-3 col-form-label">Ảnh bìa</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control" name="image">
+                                    </div>
+                                </div>
+                    
+                                <button type="submit" class="btn btn-warning font-weight-bold text-light btn-block">ĐỀ NGHỊ</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+    </div>
+    </div>
+    </div>
+</body>
+</html>

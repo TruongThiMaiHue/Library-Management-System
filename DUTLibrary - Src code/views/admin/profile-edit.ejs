@@ -1,0 +1,154 @@
+<%-include('partials/header.html')%>    
+    <style>
+        .ca {
+            background-color: #93BDA7;
+            border-color: #93BDA7;
+            transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+		    cursor: pointer;
+        }
+        .ca:hover {
+            transform: scale(1.09);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }	
+        .header {
+            color: #fff;
+            font-weight: bold;
+            background: rgba(0,0,0,0.15);
+            padding: 0.125rem 0.5rem;
+            border-radius: 100px;
+            font-size: 1.1vw;
+            letter-spacing: 0.8px;
+        }
+        .body {
+            color: #266b47 ;
+        }  
+        .btn  {
+            background-color: #FE393E ;
+        }
+        .btn :hover {
+            opacity: 0.7
+        }
+        #val {
+            padding: 0;
+            margin: 0;
+            font-size: 1vw;
+        }
+    </style>
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+    
+    <%-include('partials/add2.html')%>
+        <div class="content">
+            <div class = "row h-100"> 
+                <div class="card border-0 col-sm-8" style="float:none;margin:auto;">
+
+                    <% for(var i=0; i< success.length; i++){ %>
+                        <div class="col-sm-8" style="float:none;margin:auto;">
+                            <div class="alert alert-success m-2 " style="float:none;margin:auto;" role="alert">
+                                <i class="fas fa-check fa-lg rounded bg-success text-light"
+                                    style="padding: 0.7vw 0.55vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                </i>
+                                <%= success[i].message %> Quay về
+                                <a href="/admin/profile" class="alert-link">trang cá nhân</a>.                             
+                            </div>
+                        </div>
+                    <%}%>
+
+                    <% for(var i=0; i< error.length; i++){ %>
+                        <div class="col-sm-8" style="float:none;margin:auto;">
+                            <div class="alert alert-warning m-2" role="alert">
+                                <i class="fas fa-exclamation fa-lg rounded bg-warning text-light"
+                                style="padding: 0.7vw 1vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                            </i>
+                                <%= error[i].message %> 
+                            </div>
+                        </div>
+                    <%}%>
+
+                    <div class="card-group p-5">
+                        <div class="ca card p-3 col-sm-4 text-center">
+                            <div class="card-header bg-transparent border-0">
+                                <div class="header">QUẢN LÝ - ID <%=res.user_id%></div>
+                            </div>
+                            <div class="card-body px-0"> 
+                                <img src="/public/image/avatar.png" style="width:10rem;">
+                            </div>
+                        </div>
+
+                        <div class="ca card p-3 col-sm-8 bg-white">
+                            <div class="card-body body p-3">
+                                <form method="post">
+                                    <input type="text" name="user_id" value="<%=res.user_id%>" hidden>                                        
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Mã nhân viên</label>
+                                        <div class="col-sm-8">
+                                            <input type="number" class="form-control bg-transparent" name="code" value="<%=res.code%>">
+                                            <% for(var i=0; i< errs.length; i++){ %>
+                                                <% if(errs[i].field=="code"){%>
+                                                    <hr class="mx-1 my-0 bg-danger">
+                                                    <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                                <%}%>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row pt-2">
+                                        <label class="col-sm-4 col-form-label">Họ tên</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control bg-transparent" name="name" value="<%=res.name%>">
+                                            <% for(var i=0; i< errs.length; i++){ %>
+                                                <% if(errs[i].field=="name"){%>
+                                                    <hr class="mx-1 my-0 bg-danger">
+                                                    <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                                <%}%>
+                                            <%}%>
+                                        </div>
+                                    </div>    
+                                    <div class="form-group row pt-2">
+                                        <label class="col-sm-4 col-form-label">Email</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control bg-transparent" name="email" value="<%=res.email%>">
+                                            <% for(var i=0; i< errs.length; i++){ %>
+                                                <% if(errs[i].field=="email"){%>
+                                                    <hr class="mx-1 my-0 bg-danger">
+                                                    <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                                <%}%>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                    <div class="text-center pt-1">
+                                        <button type="submit" class="btn btn-block text-light font-weight-bold"> 
+                                            SỬA THÔNG TIN
+                                        </button>    
+                                    </div>        
+                                </form>    
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div> 
+        </div>                
+
+    </div>
+    </div>
+    </div>
+</body>
+</html>

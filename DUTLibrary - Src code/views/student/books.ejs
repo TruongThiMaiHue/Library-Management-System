@@ -1,0 +1,129 @@
+<%-include('partials/header.html')%>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+	<style>
+        .content {
+            background-color: #f5f7fa;
+        }
+        .ca {
+		    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+		    cursor: pointer;
+	    }
+        .ca:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
+        .card-title{
+            font-size: 1.15vw;
+        }
+        .bo {
+            z-index: 1;
+			position: absolute;
+            left: 0vw;
+            top: 0vw;
+        }
+	</style>	
+	<%-include('partials/add1.html')%>
+
+	<div class="menu">
+        <a href="/student/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>CÁ NHÂN</h6>
+        <a href="/student/profile/edit">
+            <img src = "/public/image/editS.svg">Sửa thông tin cá nhân</a>
+        <a href="/student/profile/changepass">
+            <img src = "/public/image/passch.svg">Đổi mật khẩu</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/student/books" class="active">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/student/books/borrow">
+            <img src = "/public/image/issueS.svg">Ấn phẩm đang mượn</a>
+        <a href="/student/books/history">
+            <img src = "/public/image/history.svg">Lịch sử mượn ấn phẩm</a>
+        <a href="/student/books/request">
+            <img src = "/public/image/requestB.svg">Đề nghị ấn phẩm</a>
+    </div>
+
+	<%-include('partials/add2.html')%>
+        
+		<div class="content p-4">
+
+			<div class = "row px-3 pt-2">
+				<form method="post" class="btn-group col-sm-12 px-2" id="search">
+					<select class="selectpicker mr-3" title="Tìm kiếm theo ..." 
+						data-width="50vw"data-style="border-info bg-white text-info " name="searchBy">
+						<option value="title">Tên</option>
+						<option value="author">Tác giả</option>
+                        <option value="genre">Thể loại</option>
+						<option value="publisher">Nhà xuất bản</option>
+						<option value="isbn">Mã số ISBN</option>
+					</select>	
+					<div class="input-group">
+						<input type="search" class="border-info form-control text-info border-right-0 " name="word">
+						<div class="input-group-append">
+							<button class="input-group-text bg-white border-info" type="submit" >
+								<i class="fa fa-search text-info"></i>
+							</button>
+						</div>										
+					</div>
+				</form>
+            </div>
+
+            <% for(var i=0; i< success.length; i++){ %>
+                <div class="row mt-4">
+                    <div  style="float:none;margin:auto;" >
+                        <div class="alert alert-success m-2" role="alert">
+                            Có <%=len%> <%= success[i].message %>
+                        </div>
+                    </div>
+                </div>
+            <%}%>
+
+            <div class="row px-3 pb-3">       
+                <% for(var i=0; i< res.length; i++){ %>
+                    <div class="col-md-3 mt-4 px-2 pt-2" style="float:none;margin:auto;" >
+                        <div class="ca card">
+
+                            <div class="px-3 pt-3">
+                                <a class="text-info" 
+									href="/student/books/detail/<%=res[i].book_id%>">
+                                    <img class="card-img-top px-5 w-100" src="/<%=res[i].image%>" style="height:13vw" alt="">
+                                </a>
+                                <% if(res[i].user_id) { %>
+                                	<i class="bo fas fa-bookmark fa-3x text-warning"></i> 
+                                <% } %>
+                            </div>
+
+                            <div class="card-body text-center p-3">
+                                <p class="card-title"><%=res[i].title%></p>
+                                <p class="card-text m-1"><%=res[i].author%></p>
+                                <p class="card-text m-1"><%=res[i].publisher%></p>
+                                <p class="card-text"><%=res[i].genre%></p>
+                            </div>
+
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+			              
+        </div>
+					
+    </div>
+	</div>			
+    </div>
+
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/print/bootstrap-table-print.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+    <script>
+	    $(function () {
+        	$('select').selectpicker();
+        });
+    </script>
+</body>
+</html>

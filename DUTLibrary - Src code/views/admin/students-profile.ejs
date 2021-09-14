@@ -1,0 +1,119 @@
+<%-include('partials/header.html')%>
+    <style>
+        #hr{
+            height: 1px;
+        }
+        .la{
+            margin: 0 6vw;
+        }
+        .la p{
+            font-size: 11vw;
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+
+        <div class="content">
+            <div class="card-group p-5 h-100">
+
+                <div class="card bg-info p-3 text-light text-center">
+                    <div class="card-header bg-transparent border-0 pt-3">
+                        <h3 class="font-weight-bold">SINH VIÊN - ID <%=res.user_id%></h3>
+                        <h5>Số ấn phẩm đang mượn</h5>
+                    </div>
+                    <div class="la card-body border border-light rounded-circle"> 
+                        <p class="pt-2"><%=issue%></p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 row">
+                        <div class="col-md-6 p-3">  
+                            <a class="btn btn-light btn-block" 
+                                href="/admin/students/edit/<%=res.user_id%>">Sửa thông tin
+                            </a> 
+                        </div>
+                        <div class="col-md-6 p-3">  
+                            <a class="btn btn-light btn-block" 
+                                href="/admin/students/delete/<%=res.user_id%>">Xóa tài khoản
+                            </a>                                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-info p-3">
+                    <div class="card-body">
+                        <form class="p-0">
+                            <div>    
+                                <h5 class="text-center text-info font-weight-bold">THÔNG TIN</h5>
+                                <hr id="hr" class="bg-info mt-4">
+                            </div>
+                            <div class="form-group row pt-3 pb-1">
+                                <label class="col-sm-4 col-form-label">Mã số sinh viên</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control border-info bg-transparent" name="code" value="<%=res.code%>" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Họ tên</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control border-info bg-transparent" name="name" value="<%=res.name%>" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row py-1">
+                                <label class="col-sm-4 col-form-label">Lớp</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control border-info bg-transparent" name="class" value="<%=res.class%>" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row pb-3">
+                                <label class="col-sm-4 col-form-label">Khoa</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control border-info bg-transparent" name="faculty" value="<%=res.faculty%>" readonly>
+                                </div>
+                            </div>
+                            <div>   
+                                <hr id="hr" class="bg-info">
+                            </div>
+                            <div class="form-group row pt-3 pb-1">
+                                <label class="col-sm-4 col-form-label">Email</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control border-info bg-transparent" name="email" value="<%=res.email%>" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Mật khẩu</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control border-info bg-transparent" name="password" value="<%=res.password%>" readonly>
+                                </div>
+                            </div>               
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+                        
+    </div>
+    </div>
+    </div>
+</body>
+</html>

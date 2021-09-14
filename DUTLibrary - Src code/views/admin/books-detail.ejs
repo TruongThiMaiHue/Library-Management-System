@@ -1,0 +1,135 @@
+<%-include('partials/header.html')%>    
+    <style>
+        #hr {
+            height: 1px;
+        }   
+        td {
+            padding: 7.5px 15px;
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+     
+        <div class="content">
+
+            <div class="card-group p-4 h-100">
+
+                <div class="card col-sm-4 rounded p-4 border-info text-center">
+                    <img src="/<%=res.image%>" class="rounded mb-4" style="width: 100%;height: 30.1rem" alt="">
+                    <div class="row">
+                        <div class="col-md-4">  
+                            <a class="btn btn-info btn-block" 
+                                href="/admin/books/edit/<%=res.book_id%>">Sửa
+                            </a> 
+                        </div>
+                        <div class="col-md-4">  
+                            <button class="btn btn-danger btn-block font-weight-bold"><%=res.book_id%></button> 
+                        </div>
+                        <div class="col-md-4">  
+                            <a class="btn btn-info btn-block" 
+                                href="/admin/books/delete/<%=res.book_id%>">Xóa
+                            </a>                                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card col-sm-8 py-0 pr-0 pl-4 border-0">
+                    <p class="mb-2 font-weight-bold text-info">THÔNG TIN CHI TIẾT</p>
+                    <div class= "card p-4 mb-4 bg-white border-info">
+                        <table class="table-bordered w-100 table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Tên bìa
+                                    </td>
+                                    <td>
+                                        <%=res.title%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Tác giả
+                                    </td>
+                                    <td>
+                                        <%=res.author%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Thể loại
+                                    </td>
+                                    <td>
+                                        <%=res.genre%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Nhà xuất bản
+                                    </td>
+                                    <td>
+                                        <%=res.publisher%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mã ISBN
+                                    </td>
+                                    <td>
+                                        <%=res.isbn%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Tập
+                                    </td>
+                                    <td>
+                                        <%=res.edition%>                                    
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Số trang
+                                    </td>
+                                    <td>
+                                        <%=res.pages%>                                    
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mb-2 font-weight-bold text-info">MÔ TẢ</p>
+                    <div class="card p-4 border-info">
+                        <textarea class="form-control bg-white p-0 border-0 w-100" style="height:8em" name="description" readonly ><%=res.description%></textarea>  
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    </div>                        
+    </div>
+</body>
+</html>

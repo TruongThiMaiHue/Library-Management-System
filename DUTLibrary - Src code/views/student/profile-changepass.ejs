@@ -1,0 +1,131 @@
+<%-include('partials/header.html')%>
+    <style>
+        .card-header {
+            font-size: 1.5vw;
+        }
+        .btn  {
+            background-color: #325C46;
+        }
+        .btn:hover {
+            opacity: 0.7
+        }
+        .ca {
+            color: #325C46;
+            border-color:#266b47; 
+        }
+        #val {
+            padding: 0;
+            margin: 0;
+            font-size: 1vw;
+        }
+    </style>
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/student/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>CÁ NHÂN</h6>
+        <a href="/student/profile/edit">
+            <img src = "/public/image/editS.svg">Sửa thông tin cá nhân</a>
+        <a href="/student/profile/changepass" class="active">
+            <img src = "/public/image/passch.svg">Đổi mật khẩu</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/student/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/student/books/borrow">
+            <img src = "/public/image/issueS.svg">Ấn phẩm đang mượn</a>
+        <a href="/student/books/history">
+            <img src = "/public/image/history.svg">Lịch sử mượn ấn phẩm</a>
+        <a href="/student/books/request">
+            <img src = "/public/image/requestB.svg">Đề nghị ấn phẩm</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+
+        <div class="content">
+            <div class = "row h-100">                     
+                <div class="ca card col-sm-7 p-4" style="float:none;margin:auto;">
+
+                    <% for(var i=0; i< success.length; i++){ %>
+                        <div class=" col-sm-12 px-2 pt-1 mb-3" style="float:none;margin:auto;">
+                            <div style="margin-left: 1.3vw;">
+                                <div class="alert alert-success m-2" role="alert">
+                                    <i class="fas fa-check fa-lg rounded bg-success text-light"
+                                        style="padding: 0.7vw 0.55vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                    </i>
+                                    <%= success[i].message %> Quay về
+                                    <a href="/student/profile" class="alert-link">trang cá nhân</a>.                             
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+
+                    <% for(var i=0; i< error.length; i++){ %>
+                        <div class=" col-sm-12 px-2 pt-1 mb-3" style="float:none;margin:auto;">
+                            <div style="margin-left: 1.3vw;">
+                                <div class="alert alert-warning m-2" role="alert">
+                                    <i class="fas fa-exclamation fa-lg rounded bg-warning text-light"
+                                        style="padding: 0.7vw 1vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                    </i>
+                                    <%= error[i].message %> 
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+
+                    <form method="post" class="px-3">
+                        <input  name="password" value="<%=res.password%>" hidden>
+                        <input type="text" name="user_id" value="<%=res.user_id%>" hidden >
+                        <div class="form-group row pt-3">      
+                            <label class="col-sm-4 col-form-label font-weight-bold">Mật khẩu cũ</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" name="oldPassword">
+                                <% for(var i=0; i< errs.length; i++){ %>
+                                    <% if(errs[i].field=="oldPassword"){%>
+                                        <hr class="mx-1 my-0 bg-danger">
+                                        <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                    <%}%>
+                                <%}%>
+                            </div>
+                        </div> 
+                        <div class="form-group row pt-3">
+                            <label class="col-sm-4 col-form-label font-weight-bold">Mật khẩu mới</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" name="newPassword">
+                                <% for(var i=0; i< errs.length; i++){ %>
+                                    <% if(errs[i].field=="newPassword"){%>
+                                        <hr class="mx-1 my-0 bg-danger">
+                                        <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                    <%}%>
+                                <%}%>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <label class="col-sm-4 col-form-label font-weight-bold">Mật khẩu xác nhận</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" name="confirmPassword">
+                                <% for(var i=0; i< errs.length; i++){ %>
+                                    <% if(errs[i].field=="confirmPassword"){%>
+                                        <hr class="mx-1 my-0 bg-danger">
+                                        <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                    <%}%>
+                                <%}%>
+                            </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <label class="col-sm-4 col-form-label"></label>
+                            <div class="col-sm-8">
+                                <button type="submit" class="btn  text-light font-weight-bold m-0 px-5">ĐỔI MẬT KHẨU</button>
+                            </div>
+                        </div>    
+                    </form>
+
+                </div>        
+            </div> 
+        </div>
+
+    </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<%-include('partials/header.html')%>    
+    <style>
+        #hr {
+            height: 1px;
+            background-color: #266b47;
+        }
+        #val {
+            padding: 0;
+            margin: 0;
+            font-size: 1vw;
+        }
+        .ca {
+            border-color: #266b47;
+        }
+        #title {
+            color: #266b47
+        }
+        #btnEdit{
+            background-color: #266b47
+        }
+        #btnEdit:hover {
+            background-color: #93BDA7;
+        }
+        .form-control, .custom-select {
+            border-color: #93BDA7;
+        }
+    </style>
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/student/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>CÁ NHÂN</h6>
+        <a href="/student/profile/edit" class="active">
+            <img src = "/public/image/editS.svg">Sửa thông tin cá nhân</a>
+        <a href="/student/profile/changepass">
+            <img src = "/public/image/passch.svg">Đổi mật khẩu</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/student/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/student/books/borrow">
+            <img src = "/public/image/issueS.svg">Ấn phẩm đang mượn</a>
+        <a href="/student/books/history">
+            <img src = "/public/image/history.svg">Lịch sử mượn ấn phẩm</a>
+        <a href="/student/books/request">
+            <img src = "/public/image/requestB.svg">Đề nghị ấn phẩm</a>
+    </div>
+
+    
+    <%-include('partials/add2.html')%>
+        
+    <div class="content">
+        <div class = "row h-100 p-4">                     
+            <div class="col-sm-9" style="float:none;margin:auto;">    
+                <div class="ca card h-100">             
+                    <div class="card-body p-4">
+
+                        <% for(var i=0; i< success.length; i++){ %>
+                            <div style="margin-left: 1.3vw;">
+                                <div class="alert alert-success m-2" role="alert">
+                                    <i class="fas fa-check fa-lg rounded bg-success text-light"
+                                        style="padding: 0.7vw 0.55vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                    </i>
+                                    <%= success[i].message %> Quay về 
+                                    <a href="/student/home" class="alert-link">trang chủ</a>.
+                                </div>
+                            </div>
+                        <%}%>
+                        <% for(var i=0; i< error.length; i++){ %>
+                            <div style="margin-left: 1.3vw;">
+                                <div class="alert alert-warning m-2" role="alert">
+                                    <i class="fas fa-exclamation fa-lg rounded bg-warning text-light"
+                                        style="padding: 0.7vw 1vw; margin:-0.2vw 1vw -0.2vw -2.7vw">
+                                    </i>
+                                    <%= error[i].message %> 
+                                </div>
+                            </div>
+                        <%}%>
+
+                        <form method="post" class="p-2">
+                            <input type="text" name="user_id" value="<%=res.user_id%>" hidden>                                        
+                            <div>   
+                                <p class="text-center font-weight-bold" id="title">THÔNG TIN SINH VIÊN</p>
+                                <hr id="hr">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>Mã số sinh viên</label>
+                                    <input type="number" class="form-control" name="code" value="<%=res.code%>">
+                                    <% for(var i=0; i< errs.length; i++){ %>
+                                        <% if(errs[i].field=="code"){%>
+                                            <hr class="mx-1 my-0 bg-danger">
+                                            <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                        <%}%>
+                                    <%}%>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label>Họ tên</label>
+                                    <input type="text" class="form-control" name="name" value="<%=res.name%>">
+                                    <% for(var i=0; i< errs.length; i++){ %>
+                                        <% if(errs[i].field=="name"){%>
+                                            <hr class="mx-1 my-0 bg-danger">
+                                            <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                        <%}%>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>Lớp</label>
+                                    <input type="text" class="form-control" name="class" value="<%=res.class%>">
+                                    <% for(var i=0; i< errs.length; i++){ %>
+                                        <% if(errs[i].field=="class"){%>
+                                            <hr class="mx-1 my-0 bg-danger">
+                                            <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                        <%}%>
+                                    <%}%>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label>Khoa</label> 
+                                    <select class="custom-select" name="faculty">
+                                        <option selected><%=res.faculty%></option>
+                                        <option>Công nghệ Nhiệt - Điện lạnh</option>
+                                        <option>Công nghệ Thông tin</option>
+                                        <option>Cơ khí</option>
+                                        <option>Cơ khí Giao thông</option>
+                                        <option>Điện</option>
+                                        <option>Điện tử - Viễn thông</option>
+                                        <option>Hóa</option>
+                                        <option>Khoa học Công nghệ tiên tiến</option>
+                                        <option>Kiến trúc</option>
+                                        <option>Môi trường</option>
+                                        <option>Quản lý Dự án</option>
+                                        <option>Xây dựng Cầu - Đường</option>
+                                        <option>Xây dựng Công trình Thủy</option>
+                                        <option>Xây dựng Dân dựng & Công nghiệp</option>                       
+                                    </select>
+                                    <% for(var i=0; i< errs.length; i++){ %>
+                                        <% if(errs[i].field=="faculty"){%>
+                                            <hr class="mx-1 my-0 bg-danger">
+                                            <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                        <%}%>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-center font-weight-bold" id="title">TÀI KHOẢN EMAIL </p>
+                                <hr id="hr">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6" style="float:none;margin:auto;">   
+                                    <input type="text" class="form-control" name="email" value="<%=res.email%>">
+                                    <% for(var i=0; i< errs.length; i++){ %>
+                                        <% if(errs[i].field=="email"){%>
+                                            <hr class="mx-1 my-0 bg-danger">
+                                            <p id="val" class="text-danger font-italic pt-2"><%= errs[i].message %></p>
+                                        <%}%>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn font-weight-bold text-light btn-block mt-3" id="btnEdit">SỬA TÀI KHOẢN</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>              
+
+    </div>
+    </div>
+    </div>
+</body>
+</html>

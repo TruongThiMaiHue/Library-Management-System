@@ -1,0 +1,109 @@
+<%-include('partials/header.html')%>
+    <style>
+        #hr{
+            height: 1px;
+            background-color: #3780b8;
+        }
+        #val{
+            padding: 0;
+            margin: 0;
+            font-size: 1vw;
+        }
+        .content {
+            background-color: #f5f7fa;
+        }
+        #title {
+            color: #3780b8;
+        }
+        #btnDel{
+            background-color: #3780b8;
+        }
+        #btnDel:hover {
+            background-color: #1b6faf;
+        }
+        .form-control {
+            border-color: #3780b8;
+        }
+    </style>
+
+    <%-include('partials/add1.html')%>
+
+    <div class="menu">
+        <a href="/admin/home">
+            <img src="/public/image/home.svg">Trang chủ</a>
+        <h6>SINH VIÊN</h6>
+        <a href="/admin/students">
+            <img src = "/public/image/student.svg">Danh sách sinh viên</a>
+        <a href="/admin/students/add">
+            <img src = "/public/image/addS.svg">Thêm sinh viên</a>
+        <h6>ẤN PHẨM</h6>
+        <a href="/admin/books">
+            <img src = "/public/image/books.svg">Danh sách ấn phẩm</a>
+        <a href="/admin/books/add">
+            <img src = "/public/image/addB.svg">Thêm ấn phẩm</a>
+        <a href="/admin/books/issued">
+            <img src = "/public/image/issueB.svg">Ấn phẩm được mượn</a>
+        <a href="/admin/books/requested">
+            <img src = "/public/image/requestB.svg">Ấn phẩm được đề nghị</a>
+    </div>
+
+    <%-include('partials/add2.html')%>
+        <div class="content">
+            <div class = "row h-100 p-4">                     
+                <div class="col-sm-9" style="float:none;margin:auto;">    
+                    <div class="card h-100 shadow">             
+                        <div class="card-body p-4">
+                            <form method="post" class="p-2">
+                                <div>   
+                                    <p class="text-center font-weight-bold" id="title">THÔNG TIN SINH VIÊN - ID <%=res.user_id%></p>
+                                    <hr id="hr">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label>Mã số sinh viên</label>
+                                        <input type="number" class="form-control bg-transparent" name="code" value="<%=res.code%>" readonly>
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label>Họ tên</label>
+                                        <input type="text" class="form-control bg-transparent" name="name" value="<%=res.name%>" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label>Lớp</label>
+                                        <input type="text" class="form-control bg-transparent" name="class" value="<%=res.class%>" readonly> 
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label>Khoa</label>
+                                        <input type="text" class="form-control bg-transparent" name="faculty" value="<%=res.faculty%>" readonly> 
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p class="text-center font-weight-bold" id="title">TÀI KHOẢN</p>
+                                        <hr id="hr">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Email cấp</label>
+                                        <input type="text" class="form-control bg-transparent" name="email" value="<%=res.email%>" readonly>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Mật khẩu cấp</label>
+                                        <input type="text" class="form-control bg-transparent" name="password" value="<%=res.password%>" readonly>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn font-weight-bold text-light btn-block mt-2" id="btnDel">XÓA TÀI KHOẢN</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+    </div>
+    </div>
+    </div>
+</body>
+</html>
