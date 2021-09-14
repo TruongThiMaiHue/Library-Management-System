@@ -12,7 +12,7 @@ It help libraries keep track of the books and their checkouts, as well as member
 
 ![function](https://user-images.githubusercontent.com/82595922/133312395-d4c83a2d-ce75-487e-a88a-1472757dad72.png)
 
-_Some image of web_
+_Some image of web_ _________________________________________________________________________________
 
 **Landing page**
 
