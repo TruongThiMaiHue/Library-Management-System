@@ -9,3 +9,5 @@ It help libraries keep track of the books and their checkouts, as well as member
 #mysql
 
 #smtp
+![erd](https://user-images.githubusercontent.com/82595922/133309620-a662210e-ce18-44ca-85ec-9c76804893e2.png)
+
